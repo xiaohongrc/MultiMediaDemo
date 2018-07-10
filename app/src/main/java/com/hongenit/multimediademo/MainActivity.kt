@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     fun start() {
         val intent = Intent(this, CameraActivity::class.java)
         startActivity(intent)
-
     }
 
     fun pause() {
