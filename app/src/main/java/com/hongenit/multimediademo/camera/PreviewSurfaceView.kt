@@ -26,7 +26,7 @@ class PreviewSurfaceView(context: Context) : SurfaceView(context), SurfaceHolder
         LogUtils.d(this, "surfaceCreated()")
         camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT)
         camera?.setPreviewDisplay(holder)
-        camera?.setDisplayOrientation(180)
+        camera?.setDisplayOrientation(90)
         camera?.startPreview()
     }
 
