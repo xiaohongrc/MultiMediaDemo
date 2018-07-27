@@ -33,7 +33,7 @@ class PreviewSurfaceView(context: Context) : SurfaceView(context), SurfaceHolder
 
     override fun surfaceChanged(holder: SurfaceHolder?, format: Int, width: Int, height: Int) {
         // surface发生改变时。
-        LogUtils.d(this, "surfaceChaged()")
+        LogUtils.d(this, "surfaceChanged()")
 
     }
 

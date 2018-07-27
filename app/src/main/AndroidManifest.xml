@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".camera.CameraActivity" />
+        <activity android:name=".player.PlayerActivity" />
+        <activity android:name=".surfaceview.SurfaceViewActivity" />
     </application>
 
 </manifest>

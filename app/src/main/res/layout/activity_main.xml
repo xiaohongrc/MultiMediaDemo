@@ -8,37 +8,27 @@
 
 
     <Button
-        android:id="@+id/bt_start"
+        android:id="@+id/bt_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="start"
-        app:layout_constraintEnd_toStartOf="@+id/bt_pause"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="player"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/bt_pause"
+        android:id="@+id/bt_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="pause"
-        app:layout_constraintEnd_toStartOf="@+id/bt_stop"
-        app:layout_constraintStart_toEndOf="@id/bt_start" />
+        android:text="camera"
+        app:layout_constraintTop_toBottomOf="@+id/bt_player" />
+
 
     <Button
-        android:id="@+id/bt_stop"
+        android:id="@+id/bt_surface"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="stop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bt_pause" />
+        android:text="surface view"
+        app:layout_constraintTop_toBottomOf="@+id/bt_camera" />
 
-
-    <SurfaceView
-        android:id="@+id/sv_video"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_stop" />
 
 
 </android.support.constraint.ConstraintLayout>
