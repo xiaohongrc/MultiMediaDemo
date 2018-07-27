@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.hongenit.multimediademo.audio.SoundRecordActivity
 import com.hongenit.multimediademo.camera.CameraActivity
 import com.hongenit.multimediademo.player.PlayerActivity
 import com.hongenit.multimediademo.surfaceview.SurfaceViewActivity
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.bt_player -> forwardPlayerActivity()
             R.id.bt_camera -> forwardCameraActivity()
             R.id.bt_surface -> forwardSurfaceViewActivity()
+            R.id.bt_sound_record -> forwardSoundRecordActivity()
         }
     }
 
@@ -34,6 +36,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         startActivity(intent)
     }
 
+    fun forwardSoundRecordActivity() {
+        val intent = Intent(this, SoundRecordActivity::class.java)
+        startActivity(intent)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +52,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         bt_player.setOnClickListener(this)
         bt_camera.setOnClickListener(this)
         bt_surface.setOnClickListener(this)
+        bt_sound_record.setOnClickListener(this)
     }
 
 

@@ -29,6 +29,13 @@
         android:text="surface view"
         app:layout_constraintTop_toBottomOf="@+id/bt_camera" />
 
+    <Button
+        android:id="@+id/bt_sound_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sound record"
+        app:layout_constraintTop_toBottomOf="@+id/bt_surface" />
+
 
 
 </android.support.constraint.ConstraintLayout>
