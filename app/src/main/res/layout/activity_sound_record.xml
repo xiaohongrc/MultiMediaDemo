@@ -7,6 +7,17 @@
     tools:context="com.hongenit.multimediademo.MainActivity">
 
 
+    <CheckBox
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:padding="20dp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cb_is_media_record"
+        />
+
+
     <Chronometer
         android:id="@+id/cm_time_count"
         android:layout_width="wrap_content"

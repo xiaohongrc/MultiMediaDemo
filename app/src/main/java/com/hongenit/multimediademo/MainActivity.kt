@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.hongenit.multimediademo.audio.SoundRecordActivity
 import com.hongenit.multimediademo.camera.CameraActivity
+import com.hongenit.multimediademo.imageFilter.ImageFilterActivity
 import com.hongenit.multimediademo.player.PlayerActivity
 import com.hongenit.multimediademo.surfaceview.SurfaceViewActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.bt_camera -> forwardCameraActivity()
             R.id.bt_surface -> forwardSurfaceViewActivity()
             R.id.bt_sound_record -> forwardSoundRecordActivity()
+            R.id.bt_image_filter -> forwardImageFilterActivity()
         }
     }
 
@@ -41,6 +43,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         startActivity(intent)
     }
 
+    fun forwardImageFilterActivity() {
+        val intent = Intent(this, ImageFilterActivity::class.java)
+        startActivity(intent)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +60,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         bt_camera.setOnClickListener(this)
         bt_surface.setOnClickListener(this)
         bt_sound_record.setOnClickListener(this)
+        bt_image_filter.setOnClickListener(this)
     }
 
 

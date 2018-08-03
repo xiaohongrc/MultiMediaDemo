@@ -1,28 +1,17 @@
 package com.hongenit.multimediademo.audio;
 
-import android.media.AudioFormat;
-import android.media.AudioRecord;
-import android.media.AudioTrack;
-import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.Chronometer;
+import android.widget.CompoundButton;
 
 import com.hongenit.multimediademo.Constans;
 import com.hongenit.multimediademo.R;
 import com.hongenit.multimediademo.utils.LogUtils;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 /**
  * Created by Xiaohong on 2018/7/27.
@@ -37,6 +26,7 @@ public class SoundRecordActivity extends AppCompatActivity implements View.OnCli
     private ISoundRecorder soundRecorder = null;
 
     private Chronometer cm_time_count;
+    private CheckBox cb_is_media_record;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +43,19 @@ public class SoundRecordActivity extends AppCompatActivity implements View.OnCli
         record_btn = findViewById(R.id.record_btn);
         cm_time_count = findViewById(R.id.cm_time_count);
         record_btn.setOnClickListener(this);
+        cb_is_media_record = findViewById(R.id.cb_is_media_record);
+        cb_is_media_record.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                LogUtils.hong("onCheckedChanged isChecked = " + isChecked);
+                if (isChecked) {
+                    soundRecorder = new MediaRecordImpl();
+                    LogUtils.hong("MediaRecordImpl");
+                } else {
+                    soundRecorder = new AudioRecordImpl();
+                }
+            }
+        });
 
     }
 

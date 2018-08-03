@@ -27,6 +27,7 @@
         <activity android:name=".player.PlayerActivity" />
         <activity android:name=".surfaceview.SurfaceViewActivity" />
         <activity android:name=".audio.SoundRecordActivity" />
+        <activity android:name=".imageFilter.ImageFilterActivity" />
     </application>
 
 </manifest>
