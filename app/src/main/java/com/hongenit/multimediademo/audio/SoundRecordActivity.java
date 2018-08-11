@@ -3,12 +3,17 @@ package com.hongenit.multimediademo.audio;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Chronometer;
 import android.widget.CompoundButton;
 
+import com.astuetz.PagerSlidingTabStrip;
 import com.hongenit.multimediademo.Constans;
 import com.hongenit.multimediademo.R;
 import com.hongenit.multimediademo.utils.LogUtils;
@@ -18,74 +23,52 @@ import com.hongenit.multimediademo.utils.LogUtils;
  * desc:
  */
 
-public class SoundRecordActivity extends AppCompatActivity implements View.OnClickListener {
-    private View record_btn;
-
-    private boolean isStartedRecord = false;
-
-    private ISoundRecorder soundRecorder = null;
-
-    private Chronometer cm_time_count;
-    private CheckBox cb_is_media_record;
+public class SoundRecordActivity extends AppCompatActivity {
+    private PagerSlidingTabStrip tabs;
+    private ViewPager pager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        soundRecorder = new AudioRecordImpl();
-        if (!Constans.APP_FOLDER.exists()) {
-            boolean mkdir = Constans.APP_FOLDER.mkdir();
-        }
+
         setContentView(R.layout.activity_sound_record);
-        initView();
+        pager = findViewById(R.id.pager);
+        pager.setAdapter(new MyAdapter(getSupportFragmentManager()));
+        tabs = findViewById(R.id.tabs);
+        tabs.setViewPager(pager);
     }
 
-    private void initView() {
-        record_btn = findViewById(R.id.record_btn);
-        cm_time_count = findViewById(R.id.cm_time_count);
-        record_btn.setOnClickListener(this);
-        cb_is_media_record = findViewById(R.id.cb_is_media_record);
-        cb_is_media_record.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                LogUtils.hong("onCheckedChanged isChecked = " + isChecked);
-                if (isChecked) {
-                    soundRecorder = new MediaRecordImpl();
-                    LogUtils.hong("MediaRecordImpl");
-                } else {
-                    soundRecorder = new AudioRecordImpl();
+
+    public class MyAdapter extends FragmentPagerAdapter {
+        private String[] titles = {getString(R.string.tab_title_record),
+                getString(R.string.tab_title_saved_recordings)};
+
+        public MyAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0: {
+                    return SoundRecordFragment.newInstance();
+                }
+                case 1: {
+                    return FileViewerFragment.newInstance();
                 }
             }
-        });
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.record_btn:
-                startRecord();
-                break;
-            default:
-
+            return null;
         }
-    }
 
-    private void startRecord() {
-        if (!isStartedRecord) {
-            record_btn.setBackgroundResource(R.drawable.ic_stop);
-            cm_time_count.setBase(SystemClock.elapsedRealtime());
-            cm_time_count.start();
-            soundRecorder.doStartRecord();
-
-        } else {
-            record_btn.setBackgroundResource(R.drawable.ic_mic);
-            cm_time_count.stop();
-
-            soundRecorder.doStopRecord();
-
+        @Override
+        public int getCount() {
+            return titles.length;
         }
-        isStartedRecord = !isStartedRecord;
 
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return titles[position];
+        }
     }
 
 

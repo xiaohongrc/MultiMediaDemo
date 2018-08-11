@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MultiMediaDemo</string>
+    <string name="tab_title_record">Record</string>
+    <string name="tab_title_saved_recordings">Saved recordings</string>
 </resources>
