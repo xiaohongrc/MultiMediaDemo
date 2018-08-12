@@ -36,6 +36,13 @@
         android:text="sound record"
         app:layout_constraintTop_toBottomOf="@+id/bt_surface" />
 
+    <Button
+        android:id="@+id/bt_image_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Image filter"
+        app:layout_constraintTop_toBottomOf="@+id/bt_sound_record" />
+
 
 
 </android.support.constraint.ConstraintLayout>

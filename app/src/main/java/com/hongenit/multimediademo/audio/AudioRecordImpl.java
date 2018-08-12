@@ -57,8 +57,9 @@ public class AudioRecordImpl implements ISoundRecorder {
                     mAudioRecordFile.createNewFile();
                     //创建文件输出流
                     mFileOutputStream = new FileOutputStream(mAudioRecordFile);
-                    //配置AudioRecord
-                    int audioSource = MediaRecorder.AudioSource.MIC;
+                    //配置音频输入源，如果只录制系统声音，使用REMOTE_SUBMIX无法初始化AudioRecord。
+                    // 试了一下其它的参数都会录进去外面的声音，使用CAMCORDER（摄像头旁边的麦克风）参数在安静环境下录制系统声音效果还行。
+                    int audioSource = MediaRecorder.AudioSource.CAMCORDER;
                     //所有android系统都支持
                     int sampleRate = 44100;
                     //单声道输入
@@ -69,7 +70,7 @@ public class AudioRecordImpl implements ISoundRecorder {
                     //计算AudioRecord内部buffer最小
                     int minBufferSize = AudioRecord.getMinBufferSize(sampleRate, channelConfig, audioFormat);
                     //buffer不能小于最低要求，也不能小于我们每次我们读取的大小。
-                    audioRecord = new AudioRecord(audioSource, sampleRate, channelConfig, audioFormat, Math.max(minBufferSize, BUFFER_SIZE));
+                    audioRecord = new AudioRecord(audioSource, sampleRate, channelConfig, audioFormat, minBufferSize * 2);
 
                     byte[] buffer = new byte[BUFFER_SIZE];
                     audioRecord.startRecording();
