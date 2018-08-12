@@ -45,8 +45,8 @@ public class FileViewerAdapter extends RecyclerView.Adapter<FileViewerAdapter.Re
 
     public void refreshData() {
 
-        if (Constans.APP_FOLDER.exists()) {
-            File[] files = Constans.APP_FOLDER.listFiles();
+        if (Constans.APP_AUDIO_FOLDER.exists()) {
+            File[] files = Constans.APP_AUDIO_FOLDER.listFiles();
             for (File file : files) {
                 System.out.println("file.name = "+file.getName());
                 RecordingItem recordingItem = new RecordingItem();

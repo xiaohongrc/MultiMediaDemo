@@ -25,7 +25,7 @@ public class MediaRecordImpl implements ISoundRecorder {
     @Override
     public void doStartRecord() {
 
-        mAudioRecordFile = new File(Constans.APP_FOLDER, "audio" + count++ + ".mp3");
+        mAudioRecordFile = new File(Constans.APP_AUDIO_FOLDER, "audio" + count++ + ".mp3");
         try {
             mAudioRecordFile.createNewFile();
 
