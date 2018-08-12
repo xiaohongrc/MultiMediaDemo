@@ -9,7 +9,7 @@ import com.hongenit.multimediademo.utils.LogUtils
 
 /**
  * Created by Xiaohong on 2018/6/25.
- * desc:
+ * desc: 展示摄像头预览。
  */
 class PreviewSurfaceView(context: Context) : SurfaceView(context), SurfaceHolder.Callback {
 
@@ -20,14 +20,12 @@ class PreviewSurfaceView(context: Context) : SurfaceView(context), SurfaceHolder
     }
 
 
-    private var camera: Camera? = null
+    private var camera: ICamera? = null
 
     override fun surfaceCreated(holder: SurfaceHolder?) {
         LogUtils.d(this, "surfaceCreated()")
-        camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT)
-        camera?.setPreviewDisplay(holder)
-        camera?.setDisplayOrientation(90)
-        camera?.startPreview()
+        camera = CameraImpl1()
+        camera?.startPreview(holder)
     }
 
 
@@ -40,13 +38,11 @@ class PreviewSurfaceView(context: Context) : SurfaceView(context), SurfaceHolder
     override fun surfaceDestroyed(holder: SurfaceHolder?) {
         LogUtils.d(this, "surfaceDestroyed()")
         camera?.stopPreview()
-        camera?.release()
-        camera = null
     }
 
     // 拍照
     fun takePic(callback: Camera.PictureCallback) {
-        camera?.takePicture(null, null, callback)
+        camera?.takePicture(callback)
     }
 
 

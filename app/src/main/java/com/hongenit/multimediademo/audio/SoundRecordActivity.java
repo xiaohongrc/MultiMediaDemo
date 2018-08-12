@@ -1,11 +1,6 @@
 package com.hongenit.multimediademo.audio;
 
-import android.media.AudioFormat;
-import android.media.AudioRecord;
-import android.media.AudioTrack;
-import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,15 +9,6 @@ import android.widget.Chronometer;
 
 import com.hongenit.multimediademo.Constans;
 import com.hongenit.multimediademo.R;
-import com.hongenit.multimediademo.utils.LogUtils;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 /**
  * Created by Xiaohong on 2018/7/27.
@@ -42,8 +28,8 @@ public class SoundRecordActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         soundRecorder = new AudioRecordImpl();
-        if (!Constans.APP_FOLDER.exists()) {
-            boolean mkdir = Constans.APP_FOLDER.mkdir();
+        if (!Constans.APP_AUDIO_FOLDER.exists()) {
+            boolean mkdir = Constans.APP_AUDIO_FOLDER.mkdir();
         }
         setContentView(R.layout.activity_sound_record);
         initView();

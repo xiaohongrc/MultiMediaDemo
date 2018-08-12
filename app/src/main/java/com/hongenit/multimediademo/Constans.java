@@ -11,7 +11,10 @@ import java.io.File;
 
 public class Constans {
 
-    public static final File APP_FOLDER = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "audiofile");
+    // 应用根目录
+    public static final File APP_ROOT_FOLDER = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "multimediademo");
+    // audio模块目录
+    public static final File APP_AUDIO_FOLDER = new File(APP_ROOT_FOLDER + File.separator + "audio");
 
 
 }

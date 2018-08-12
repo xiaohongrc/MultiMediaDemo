@@ -52,7 +52,7 @@ public class AudioRecordImpl implements ISoundRecorder {
         recordHandler.post(new Runnable() {
             @Override
             public void run() {
-                mAudioRecordFile = new File(Constans.APP_FOLDER, "audio" + count++ + ".pcm");
+                mAudioRecordFile = new File(Constans.APP_AUDIO_FOLDER, "audio" + count++ + ".pcm");
                 try {
                     mAudioRecordFile.createNewFile();
                     //创建文件输出流

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.view.View
 import com.hongenit.multimediademo.BaseActivity
+import com.hongenit.multimediademo.Constans
 import com.hongenit.multimediademo.R
 import com.hongenit.multimediademo.utils.LogUtils
 import kotlinx.android.synthetic.main.activity_camera.*
@@ -37,7 +38,10 @@ class CameraActivity : BaseActivity(), View.OnClickListener, Camera.PictureCallb
     }
 
     private fun getPhotoSavePath(): File {
-        val storageDirectory = Environment.getExternalStorageDirectory()
+        val storageDirectory = Constans.APP_ROOT_FOLDER
+        if (!storageDirectory.exists()){
+            storageDirectory.mkdirs()
+        }
         return File(storageDirectory.path + File.separator + System.currentTimeMillis() + ".jpg")
 
     }
